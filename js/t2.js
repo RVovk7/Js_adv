@@ -1,41 +1,63 @@
 'use strict';
 let clname = document.getElementsByClassName("inp");
-   ////////// click x and o
-   function setOX(e){
-e.target.value = 'X';
-   function setO(e){
-e.target.value = 'O';
-clname[0].addEventListener('click', setX);
-}
-	function setX(e){
-			setOX(e);
-			}	
-	 let arr= {};
-	 for (let i = 1; i<=9; i++){
-arr[document.getElementById(i).id] = document.getElementById(i).value;
+  let counter = 0;
+   function setOX() {
+	   funck[counter = (counter % 2) +1]();
+  arpush();
 }	
-		 whowin(arr);
-clname[0].addEventListener('click', setO);
+let funck = {
+1: function setX() {
+event.target.value = 'X';
+event.target.style.color = 'blue';
+},
+2: function setO() {
+ event.target.value = 'O';
+ event.target.style.color = 'red';
+ }
+};
+ clname[0].addEventListener('click', setOX); 
+function arpush (){
+ 	 let arr= {};
+	 for (let i = 1; i<=9; i++){
+	arr[document.getElementById(i).id] = document.getElementById(i).value;
 }
- clname[0].addEventListener('click', setOX); //entry first click
+whowin(arr);
+}
 function whowin(arr){
-	console.log(arr['1']);
-	if ( arr['1'] =='O' && arr['2'] =='O' && arr['3'] =='O' ||  arr['1'] =='O' && arr['4'] =='O' && arr['7'] =='O' || arr['7'] =='O' && arr['8'] =='O' && arr['9'] =='O' || arr['3'] =='O' && arr['6'] =='O' && arr['9'] =='O' ||  arr['2'] =='O' && arr['5'] =='O' && arr['8'] =='O' ||  arr['1'] =='O' && arr['5'] =='O' && arr['9'] =='O' ||  arr['3'] =='O' && arr['5'] =='O' && arr['7'] =='O'){
-		document.write('O - win');
-        //document.close(); 
+	let tr = [['1','2','3'],['1','4','7'],['7','8','9'],['3','6','9'],['2','5','8'],['1','5','9'],['3','5','7'],['4','5','6']];
+	let tf_O;
+ 	tr.forEach(function(el){
+		if ( arr[el[0]] == 'O' && arr[el[1]] == 'O' && arr[el[2]] == 'O' ){
+		tf_O = true;
+		}});
+		let tf_X;
+ 	tr.forEach(function(el){
+		if ( arr[el[0]] == 'X' && arr[el[1]] == 'X' && arr[el[2]] == 'X' ){
+		tf_X = true;
+		}});
+		if (tf_O){
+			document.getElementById('resault').value = 'O wins';
+			document.getElementById('restart').style.display ="block";
 		}
-		else
-		if ( arr['1'] =='X' && arr['2'] =='X' && arr['3'] =='X' ||  arr['1'] =='X' && arr['4'] =='X' && arr['7'] =='X' || arr['7'] =='X' && arr['8'] =='X' && arr['9'] =='X' || arr['3'] =='X' && arr['6'] =='X' && arr['9'] =='X' ||  arr['2'] =='X' && arr['5'] =='X' && arr['8'] =='X' ||  arr['1'] =='X' && arr['5'] =='X' && arr['9'] =='X' ||  arr['3'] =='X' && arr['5'] =='X' && arr['7'] =='X'){
-		document.write('X - win');
-		//document.close(); 	
-	}
-/*
-	else {
+		if (tf_X){
+			document.getElementById('resault').value = 'X wins';
+			document.getElementById('restart').style.display ="block";
+		}
+	else{
 	let dro = String.fromCharCode(160);
-	if ( arr['1'] !== dro  && arr['2'] !== dro && arr['3'] !== dro && arr['4'] !== dro && arr['5'] !== dro && arr['6'] !== dro && arr['7']!== dro && arr['8']!== dro && arr['9'] !== dro){
-			document.write('draw');
-				document.close()s
-	}
-	}*/
+	let adro = ['1','2','3','4','5','6','7','8','9'];
+let draw = adro.every(function(el){
+		return arr[el] !== dro;
+		});
+		if (draw & tf_X !== true && tf_O !== true){
+			document.getElementById('resault').value = 'A draw';
+			document.getElementById('restart').style.display ="block";
+		}}}
+restart.addEventListener('click', restr);
+function restr(){
+	location.reload();
 }
+	
+
+
 	
