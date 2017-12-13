@@ -1,13 +1,12 @@
-*{
-	background-color: #c0bbbb;
-}
+
 input[type = button]{
 	-webkit-appearance:default-button;
 		height: 75px;
          width: 75px;
          font-size: 3.9em;
+         background-color: black;
 	}
-	.inp{
+	#inp{
 		float:left;
 	}
 	.dwn {
@@ -16,11 +15,12 @@ input[type = button]{
 	#resault{ 
 		position: relative;
 		left:20px; 
-	border: 2px solid #c0bbbb;
+	border: 2px solid #ffffff;
 		height: 75px;
 		 width:  150px;
 		 text-align: center;
 		 font-size: 1.6em;
+		 color: silver;
 }
 #restart{
 	position: relative;
@@ -29,4 +29,6 @@ input[type = button]{
 	height: 25px;
 	left:60px;
 	display: none;
+	background-color: black;
+	color : white;
 }

@@ -1,10 +1,8 @@
 'use strict';
-let clname = document.getElementsByClassName("inp");
- clname[0].addEventListener('click', setOX);
+ inp.addEventListener('click', setOX);
   let count = 0;
    function setOX() {
 	   funck[count = (count % 2) +1]();
-	   console.log(count);
   arpush();
 }	
 let funck = {
@@ -37,11 +35,13 @@ function whowin(arr){
 		tf_X = true;
 		}});
 		if (tf_O){
-			document.getElementById('resault').value = 'O wins';
+			document.getElementById('resault').value = 'O - wins';
+			document.getElementById('resault').style.color = 'red';
 			document.getElementById('restart').style.display ="block";
 		}
 		if (tf_X){
-			document.getElementById('resault').value = 'X wins';
+			document.getElementById('resault').value = 'X - wins';
+			document.getElementById('resault').style.color = 'blue';
 			document.getElementById('restart').style.display ="block";
 		}
 	else{
