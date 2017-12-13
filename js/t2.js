@@ -1,8 +1,10 @@
 'use strict';
 let clname = document.getElementsByClassName("inp");
-  let counter = 0;
+ clname[0].addEventListener('click', setOX);
+  let count = 0;
    function setOX() {
-	   funck[counter = (counter % 2) +1]();
+	   funck[count = (count % 2) +1]();
+	   console.log(count);
   arpush();
 }	
 let funck = {
@@ -15,7 +17,6 @@ event.target.style.color = 'blue';
  event.target.style.color = 'red';
  }
 };
- clname[0].addEventListener('click', setOX); 
 function arpush (){
  	 let arr= {};
 	 for (let i = 1; i<=9; i++){
@@ -26,11 +27,11 @@ whowin(arr);
 function whowin(arr){
 	let tr = [['1','2','3'],['1','4','7'],['7','8','9'],['3','6','9'],['2','5','8'],['1','5','9'],['3','5','7'],['4','5','6']];
 	let tf_O;
+ 	let tf_X;
  	tr.forEach(function(el){
 		if ( arr[el[0]] == 'O' && arr[el[1]] == 'O' && arr[el[2]] == 'O' ){
 		tf_O = true;
-		}});
-		let tf_X;
+		}});	
  	tr.forEach(function(el){
 		if ( arr[el[0]] == 'X' && arr[el[1]] == 'X' && arr[el[2]] == 'X' ){
 		tf_X = true;
@@ -44,12 +45,11 @@ function whowin(arr){
 			document.getElementById('restart').style.display ="block";
 		}
 	else{
-	let dro = String.fromCharCode(160);
-	let adro = ['1','2','3','4','5','6','7','8','9'];
-let draw = adro.every(function(el){
-		return arr[el] !== dro;
+	let dro = ['1','2','3','4','5','6','7','8','9'];
+let draw = dro.every(function(el){
+		return arr[el] !== String.fromCharCode(160);
 		});
-		if (draw & tf_X !== true && tf_O !== true){
+		if (draw & !tf_X && !tf_O ){
 			document.getElementById('resault').value = 'A draw';
 			document.getElementById('restart').style.display ="block";
 		}}}
@@ -57,7 +57,3 @@ restart.addEventListener('click', restr);
 function restr(){
 	location.reload();
 }
-	
-
-
-	
