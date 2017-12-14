@@ -74,8 +74,7 @@ let draw = dro.every(function(el){
 			document.getElementById('resault').value = 'A draw';
 			document.getElementById('restart').style.display ="block";
 		}}}
-		
-restart.addEventListener('click', restr);
+		restart.addEventListener('click', restr);
 function restr(){
 	for (let i = 1; i<=9; i++){
 	document.getElementById(i).value = h_null;
