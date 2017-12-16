@@ -107,36 +107,37 @@ brd = true;
  for (let i = 1; i<=9; i++){
 	obj[document.getElementById(i).id] = document.getElementById(i).value;  // id of button [1-9]
 }
+
 	/////////set third 'O', if two 'O' in line for win 
  	matrix.forEach(function(el){
-			if ( obj[el[0]] == 'O' && obj[el[1]] == 'O' && obj[el[2]] == h_null   && !o_test ){
+			if ( obj[el[0]] == 'O' && obj[el[1]] == 'O' && obj[el[2]] == h_null   && !o_test && !brd ){
 				document.getElementById(el[2]).value = 'O';
 	document.getElementById(el[2]).style.color = 'red';
             o_test = true;
 			}
-			if ( obj[el[0]] == 'O' && obj[el[2]] == 'O' && obj[el[1]] == h_null   && !o_test   ){
+			if ( obj[el[0]] == 'O' && obj[el[2]] == 'O' && obj[el[1]] == h_null   && !o_test && !brd   ){
 				document.getElementById(el[1]).value = 'O';
 	document.getElementById(el[1]).style.color = 'red';
 	o_test =true;
 			}
-			if ( obj[el[1]] == 'O' && obj[el[2]] == 'O' && obj[el[0]] == h_null   && !o_test   ){
+			if ( obj[el[1]] == 'O' && obj[el[2]] == 'O' && obj[el[0]] == h_null   && !o_test && !brd   ){
 				document.getElementById(el[0]).value = 'O';
 	document.getElementById(el[0]).style.color = 'red';
 o_test =true;
 			}	});
 			/////       set the 'O' if two 'X' in line to prevent lose
 			matrix.forEach(function(el){	
-		if ( obj[el[0]] == 'X' && obj[el[1]] == 'X' && obj[el[2]] == h_null  && !o_test && !x_test ){
+		if ( obj[el[0]] == 'X' && obj[el[1]] == 'X' && obj[el[2]] == h_null  && !o_test && !x_test && !brd ){
 				document.getElementById(el[2]).value = 'O';
 	document.getElementById(el[2]).style.color = 'red';
             x_test = true;
 			}
-			if ( obj[el[0]] == 'X' && obj[el[2]] == 'X' && obj[el[1]] == h_null  && !o_test && !x_test ){
+			if ( obj[el[0]] == 'X' && obj[el[2]] == 'X' && obj[el[1]] == h_null  && !o_test && !x_test && !brd ){
 				document.getElementById(el[1]).value = 'O';
 	document.getElementById(el[1]).style.color = 'red';
 	x_test =true;
 			}
-			if ( obj[el[1]] == 'X' && obj[el[2]] == 'X' && obj[el[0]] == h_null  && !o_test && !x_test  ){
+			if ( obj[el[1]] == 'X' && obj[el[2]] == 'X' && obj[el[0]] == h_null  && !o_test && !x_test  && !brd ){
 				document.getElementById(el[0]).value = 'O';
 	document.getElementById(el[0]).style.color = 'red';
 x_test =true;
