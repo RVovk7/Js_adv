@@ -97,7 +97,6 @@ function one_p(){
 	if (event.target.value == h_null){	
 	event.target.value = 'X';
 event.target.style.color = 'blue';
-
 }
 else {
 		event.target.style.borderColor = 'red';
@@ -110,17 +109,17 @@ brd = true;
 }
  	matrix.forEach(function(el){
 	 	/////////set third 'O' if two 'O' in row
-			if ( obj[el[0]] == 'O' && obj[el[1]] == 'O' && obj[el[2]] !== 'X'   && !o_test && !x_test && !brd  ){
+			if ( obj[el[0]] == 'O' && obj[el[1]] == 'O' && obj[el[2]] !== 'X'   && !o_test  && !brd  ){
 				document.getElementById(el[2]).value = 'O';
 	document.getElementById(el[2]).style.color = 'red';
             o_test = true;
 			}
-			if ( obj[el[0]] == 'O' && obj[el[2]] == 'O' && obj[el[1]] !== 'X'  && !o_test && !x_test && !brd ){
+			if ( obj[el[0]] == 'O' && obj[el[2]] == 'O' && obj[el[1]] !== 'X'  && !o_test  && !brd ){
 				document.getElementById(el[1]).value = 'O';
 	document.getElementById(el[1]).style.color = 'red';
 	o_test =true;
 			}
-			if ( obj[el[1]] == 'O' && obj[el[2]] == 'O' && obj[el[0]] !== 'X'  && !o_test && !x_test && !brd ){
+			if ( obj[el[1]] == 'O' && obj[el[2]] == 'O' && obj[el[0]] !== 'X'  && !o_test  && !brd ){
 				document.getElementById(el[0]).value = 'O';
 	document.getElementById(el[0]).style.color = 'red';
 o_test =true;
@@ -147,7 +146,7 @@ if  (arr.indexOf(h_null) !== arr.lastIndexOf(h_null) && !x_test &&  !o_test){ //
 		rand_value = getRand();
 		}	
 		}
-if (document.getElementById(rand_value).value == h_null && !brd && !x_test && !o_test) {
+if (document.getElementById(rand_value).value == h_null && !brd && !x_test && !o_test ) {
 	document.getElementById(rand_value).value = 'O';
 	document.getElementById(rand_value).style.color = 'red';
 	}
