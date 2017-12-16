@@ -1,9 +1,28 @@
 'use strict';
-let h_null = String.fromCharCode(160), boadr_fix, count = 0;  // charCode(160) == &nbsp; in html,   &nbsp; - the same as ' '
+let h_null = String.fromCharCode(160), boadr_fix, count = 0, select_f= false;  // charCode(160) == &nbsp; in html,   &nbsp; - the same as ' '
  //checks win matrix and for one player algoritm
 let matrix = [['1','2','3'],['1','4','7'],['7','8','9'],['3','6','9'],['2','5','8'],['1','5','9'],['3','5','7'],['4','5','6']];   
- two.addEventListener('click', chose_mode2); //two player
+///// select who first  xff - human  off - computer or second player on two mode
+x_first.addEventListener('click', xxf); 
+ o_first.addEventListener('click', oof);
+ function xxf(){
+	  document.getElementById('x_first').style.display ="none";
+	   document.getElementById('o_first').style.display ="none";
+	    document.getElementById('one').style.display ="block";
+	   document.getElementById('two').style.display ="block";
+	   select_f =true;
+	   	 two.addEventListener('click', chose_mode2); //two player
  one.addEventListener('click', chose_mode1); // one player
+ }
+  function oof(){
+	  document.getElementById('x_first').style.display ="none";
+	   document.getElementById('o_first').style.display ="none";
+	    document.getElementById('one').style.display ="block";
+	   document.getElementById('two').style.display ="block";
+	   select_f =false;
+	   	 two.addEventListener('click', chose_mode2); //two player
+ one.addEventListener('click', chose_mode1); // one player
+ }
  ////mode button select
   function chose_mode2(){
 	  document.getElementById('one').style.display ="none";
@@ -14,9 +33,18 @@ inp.addEventListener('click', two_p);
 	document.getElementById('one').style.display ="none";
 	   document.getElementById('two').style.display ="none";
 inp.addEventListener('click', one_p);
+if (select_f){
+document.getElementById('5').value = "O";
+document.getElementById('5').style.color = "red";
+select_f =false;
+}
 }
  ////two player mode
    function two_p() {
+	   if (select_f){
+		   count = count +1;
+		   select_f =false;
+	   }
 	   funck[count = (count % 2) +1](); // (count % 2) +1  == 1 || 2
   arpush();
  }	
@@ -94,7 +122,7 @@ function one_p(){
 	 for (let i = 1; i<=9; i++){
 	arr.push(document.getElementById(i).value);
 	}
-	if (event.target.value == h_null){	
+	if (event.target.value == h_null ){	
 	event.target.value = 'X';
 event.target.style.color = 'blue';
 }
@@ -107,36 +135,37 @@ brd = true;
  for (let i = 1; i<=9; i++){
 	obj[document.getElementById(i).id] = document.getElementById(i).value;  // id of button [1-9]
 }
+
 	/////////set third 'O', if two 'O' in line for win 
  	matrix.forEach(function(el){
-			if ( obj[el[0]] == 'O' && obj[el[1]] == 'O' && obj[el[2]] == h_null   && !o_test ){
+			if ( obj[el[0]] == 'O' && obj[el[1]] == 'O' && obj[el[2]] == h_null   && !o_test && !brd ){
 				document.getElementById(el[2]).value = 'O';
 	document.getElementById(el[2]).style.color = 'red';
             o_test = true;
 			}
-			if ( obj[el[0]] == 'O' && obj[el[2]] == 'O' && obj[el[1]] == h_null   && !o_test   ){
+			if ( obj[el[0]] == 'O' && obj[el[2]] == 'O' && obj[el[1]] == h_null   && !o_test && !brd   ){
 				document.getElementById(el[1]).value = 'O';
 	document.getElementById(el[1]).style.color = 'red';
 	o_test =true;
 			}
-			if ( obj[el[1]] == 'O' && obj[el[2]] == 'O' && obj[el[0]] == h_null   && !o_test   ){
+			if ( obj[el[1]] == 'O' && obj[el[2]] == 'O' && obj[el[0]] == h_null   && !o_test && !brd   ){
 				document.getElementById(el[0]).value = 'O';
 	document.getElementById(el[0]).style.color = 'red';
 o_test =true;
 			}	});
 			/////       set the 'O' if two 'X' in line to prevent lose
 			matrix.forEach(function(el){	
-		if ( obj[el[0]] == 'X' && obj[el[1]] == 'X' && obj[el[2]] == h_null  && !o_test && !x_test ){
+		if ( obj[el[0]] == 'X' && obj[el[1]] == 'X' && obj[el[2]] == h_null  && !o_test && !x_test && !brd ){
 				document.getElementById(el[2]).value = 'O';
 	document.getElementById(el[2]).style.color = 'red';
             x_test = true;
 			}
-			if ( obj[el[0]] == 'X' && obj[el[2]] == 'X' && obj[el[1]] == h_null  && !o_test && !x_test ){
+			if ( obj[el[0]] == 'X' && obj[el[2]] == 'X' && obj[el[1]] == h_null  && !o_test && !x_test && !brd ){
 				document.getElementById(el[1]).value = 'O';
 	document.getElementById(el[1]).style.color = 'red';
 	x_test =true;
-			}
-			if ( obj[el[1]] == 'X' && obj[el[2]] == 'X' && obj[el[0]] == h_null  && !o_test && !x_test  ){
+			} 
+			if ( obj[el[1]] == 'X' && obj[el[2]] == 'X' && obj[el[0]] == h_null  && !o_test && !x_test  && !brd ){
 				document.getElementById(el[0]).value = 'O';
 	document.getElementById(el[0]).style.color = 'red';
 x_test =true;
@@ -167,8 +196,10 @@ document.getElementById('resault').value = h_null;
 document.getElementById('restart').style.display ="none";
 document.getElementById('resault').style.color = 'silver';
 count = 0;
- document.getElementById('one').style.display ="block";
-	   document.getElementById('two').style.display ="block";
+ document.getElementById('x_first').style.display ="block";
+	   document.getElementById('o_first').style.display ="block";
+ document.getElementById('one').style.display ="none";
+	   document.getElementById('two').style.display ="none";
 	   inp.removeEventListener('click', two_p);
 	   inp.removeEventListener('click', one_p);
 	  }
