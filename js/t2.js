@@ -1,5 +1,5 @@
 'use strict';
-let h_null = String.fromCharCode(160), boadr_fix=0, count = 0;  // charCode(160) == &nbsp; in html,   &nbsp; - the same as ' '
+let h_null = String.fromCharCode(160), boadr_fix, count = 0;  // charCode(160) == &nbsp; in html,   &nbsp; - the same as ' '
  //checks win matrix and for one player algoritm
 let matrix = [['1','2','3'],['1','4','7'],['7','8','9'],['3','6','9'],['2','5','8'],['1','5','9'],['3','5','7'],['4','5','6']];   
  two.addEventListener('click', chose_mode2); //two player
@@ -68,12 +68,12 @@ function whowin(obj){
 		if ( obj[el[0]] == 'X' && obj[el[1]] == 'X' && obj[el[2]] == 'X' ){
 		tf_X = true;
 		}});
-		if (tf_O){
+		if (tf_O && !tf_X){
 			document.getElementById('resault').value = 'O - wins';
 			document.getElementById('resault').style.color = 'red';
 			document.getElementById('restart').style.display ="block";
 		}
-		if (tf_X){
+		if (tf_X && !tf_O){
 			document.getElementById('resault').value = 'X - wins';
 			document.getElementById('resault').style.color = 'blue';
 			document.getElementById('restart').style.display ="block";
@@ -107,35 +107,36 @@ brd = true;
  for (let i = 1; i<=9; i++){
 	obj[document.getElementById(i).id] = document.getElementById(i).value;  // id of button [1-9]
 }
+	/////////set third 'O', if two 'O' in line for win 
  	matrix.forEach(function(el){
-	 	/////////set third 'O' if two 'O' in row
-			if ( obj[el[0]] == 'O' && obj[el[1]] == 'O' && obj[el[2]] !== 'X'   && !o_test  && !brd  ){
+			if ( obj[el[0]] == 'O' && obj[el[1]] == 'O' && obj[el[2]] == h_null   && !o_test ){
 				document.getElementById(el[2]).value = 'O';
 	document.getElementById(el[2]).style.color = 'red';
             o_test = true;
 			}
-			if ( obj[el[0]] == 'O' && obj[el[2]] == 'O' && obj[el[1]] !== 'X'  && !o_test  && !brd ){
+			if ( obj[el[0]] == 'O' && obj[el[2]] == 'O' && obj[el[1]] == h_null   && !o_test   ){
 				document.getElementById(el[1]).value = 'O';
 	document.getElementById(el[1]).style.color = 'red';
 	o_test =true;
 			}
-			if ( obj[el[1]] == 'O' && obj[el[2]] == 'O' && obj[el[0]] !== 'X'  && !o_test  && !brd ){
+			if ( obj[el[1]] == 'O' && obj[el[2]] == 'O' && obj[el[0]] == h_null   && !o_test   ){
 				document.getElementById(el[0]).value = 'O';
 	document.getElementById(el[0]).style.color = 'red';
 o_test =true;
-			}	
-			/////       set the 'O' if two 'X' in row		
-		if ( obj[el[0]] == 'X' && obj[el[1]] == 'X' && obj[el[2]] !== 'O' && !o_test && !x_test && !brd ){
+			}	});
+			/////       set the 'O' if two 'X' in line to prevent lose
+			matrix.forEach(function(el){	
+		if ( obj[el[0]] == 'X' && obj[el[1]] == 'X' && obj[el[2]] == h_null  && !o_test && !x_test ){
 				document.getElementById(el[2]).value = 'O';
 	document.getElementById(el[2]).style.color = 'red';
             x_test = true;
 			}
-			if ( obj[el[0]] == 'X' && obj[el[2]] == 'X' && obj[el[1]] !== 'O'&& !o_test && !x_test && !brd ){
+			if ( obj[el[0]] == 'X' && obj[el[2]] == 'X' && obj[el[1]] == h_null  && !o_test && !x_test ){
 				document.getElementById(el[1]).value = 'O';
 	document.getElementById(el[1]).style.color = 'red';
 	x_test =true;
 			}
-			if ( obj[el[1]] == 'X' && obj[el[2]] == 'X' && obj[el[0]] !== 'O' && !o_test && !x_test && !brd ){
+			if ( obj[el[1]] == 'X' && obj[el[2]] == 'X' && obj[el[0]] == h_null  && !o_test && !x_test  ){
 				document.getElementById(el[0]).value = 'O';
 	document.getElementById(el[0]).style.color = 'red';
 x_test =true;
